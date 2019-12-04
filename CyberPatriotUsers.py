@@ -12,10 +12,10 @@ def del_admin(uname):
     subprocess.call(["sudo","userdel",uname,"sudo"])
 default_users = ['root', 'daemon', 'bin', 'sys', 'sync', 'games', 'man', 'lp', 'mail', 'news', 'uucp', 'proxy', 'www-data', 'backup', 'list', 'irc', 'gnats', 'nobody', 'libuuid', 'syslog', 'messagebus', 'usbmux', 'dnsmasq', 'avahi-autoipd', 'kernoops', 'rtkit', 'saned', 'whoopsie', 'speech-dispatcher', 'avahi', 'lightdm', 'colord', 'hplip', 'pulse']
 
-requested_users = set(input("users: ").split("\n"))
+requested_users = set(input("users: ").split("\n")+default_users)
 requested_admins = set(input("admins: ").split("\n"))
 
-current_user_list = set(subprocess.check_output(['getent', 'passwd', '|', 'awk', '-F:',"'{print $1}'"]).split("\n")+default_users)
+current_user_list = set(subprocess.check_output(['getent', 'passwd', '|', 'awk', '-F:',"'{print $1}'"]).split("\n"))
 current_admin_list = set(subprocess.check_output(['getent', 'group', 'sudo', '|', 'awk', '-F:',"'{print $4}'"]).split("\n"))
 
 users_to_add = requested_users.difference(current_user_list)
