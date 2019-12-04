@@ -45,4 +45,4 @@ admins_to_remove = current_admin_list.difference(requested_admins)
 print(admins_to_remove)
 input()
 for admin in admins_to_remove:
-    remove_admin(admin)
+    del_admin(admin)
