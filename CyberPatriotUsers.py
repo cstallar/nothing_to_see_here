@@ -15,9 +15,9 @@ default_users = ['root', 'daemon', 'bin', 'sys', 'sync', 'games', 'man', 'lp', '
 requested_users = set(input("users: ").split("\n")+default_users)
 requested_admins = set(input("admins: ").split("\n"))
 
-current_user_list = subprocess.check_output(['getent', 'passwd']).split("\n")
+current_user_list = subprocess.check_output(['getent', 'passwd']).decode().split("\n")
 current_user_list = [x.split(":")[0] for x in current_user_list]
-current_admin_list = subprocess.check_output(['getent', 'group', 'sudo']).split("\n")
+current_admin_list = subprocess.check_output(['getent', 'group', 'sudo']).decode().split("\n")
 current_admin_list = [x.split(":")[3] for x in current_admin_list]
 
 users_to_add = requested_users.difference(current_user_list)
