@@ -8,7 +8,7 @@ def del_user(uname):
 def add_admin(uname):
     subprocess.call(["sudo","usermod","-a","-G","sudo",uname])
 def del_admin(uname):
-    subprocess.call(["sudo","userdel",uname,"sudo"])
+    subprocess.call(["sudo","groupdel",uname,"sudo"])
 default_users = ['root', 'daemon', 'bin', 'sys', 'sync', 'games', 'man', 'lp', 'mail', 'news', 'uucp', 'proxy', 'www-data', 'backup', 'list', 'irc', 'gnats', 'nobody', 'libuuid', 'syslog', 'messagebus', 'usbmux', 'dnsmasq', 'avahi-autoipd', 'kernoops', 'rtkit', 'saned', 'whoopsie', 'speech-dispatcher', 'avahi', 'lightdm', 'colord', 'hplip', 'pulse']
 
 requested_users = set(input("users: ").split(",")+default_users)#this is bc of weirdness with shell and newlines, otherwise it would make sense to split by newline
