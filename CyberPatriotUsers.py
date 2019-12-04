@@ -18,9 +18,9 @@ current_user_list = subprocess.check_output(['getent', 'passwd']).decode().split
 print(current_user_list)
 current_user_list = set([x.split(":")[0] for x in current_user_list[:-1]])
 print(current_user_list)
-current_admin_list = subprocess.check_output(['getent', 'group', 'sudo']).decode().split("\n")
+current_admin_list = subprocess.check_output(['getent', 'group', 'sudo']).decode().split(",")
 print(current_admin_list)
-current_admin_list = set([x.split(":")[3] for x in current_admin_list[:-1]])
+current_admin_list = set([x.split(":")[-1] for x in current_admin_list[:-1]])
 print(current_admin_list)
 
 users_to_add = requested_users.difference(current_user_list)
