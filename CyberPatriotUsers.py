@@ -22,7 +22,7 @@ if '' in current_user_list:
 print(current_user_list)
 current_admin_list = subprocess.check_output(['getent', 'group', 'sudo']).decode().split(",")
 print(current_admin_list)
-current_admin_list = set([x.split(":")[-1] for x in current_admin_list])
+current_admin_list = set([x.split(":")[-1].strip() for x in current_admin_list])
 if '' in current_admin_list:
     current_admin_list.remove('')
 print(current_admin_list)
